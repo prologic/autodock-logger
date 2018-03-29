@@ -1,11 +1,17 @@
-FROM prologic/autodock
+# Build
+FROM golang:alpine AS build
 
-ENTRYPOINT ["autodock-logger"]
+RUN apk add --update git make build-base && \
+    rm -rf /var/cache/apk/*
+
+WORKDIR /go/src/plugin
+COPY . /go/src/plugin
+RUN go get ./... && go build -o plugin .
+
+# Runtime
+FROM scratch
+
+COPY --from=build /go/src/plugin/plugin /plugin
+
+ENTRYPOINT ["/plugin"]
 CMD []
-
-COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt && rm /tmp/requirements.txt
-
-WORKDIR /app
-COPY . /app/
-RUN pip install .
