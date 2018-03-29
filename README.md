@@ -2,43 +2,34 @@
 
 [![Image Layers](https://badge.imagelayers.io/prologic/autodock-logger:latest.svg)](https://imagelayers.io/?images=prologic/autodock-logger:latest)
 
-Logger plugin for autodock.
+Logger plugin for autodock (*reference implementation*).
 
 autodock-logger is MIT licensed.
 
 > **note**
 >
-> See: [autodock](https://github.com/prologic/autodock)
+> Please see [autodock](https://github.com/prologic/autodock) for the main project and file issues there.
 
-## Basic Usage
+## Building
 
-Start the daemon:
-
+From source:
 ```#!bash
-$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name autodock prologic/autodock
+$ go build .
 ```
 
-Link and start an autodock plugin:
-
+Using Docker:
 ```#!bash
-$ docker run -i -t --link autodock prologic/autodock-logger
+$ docker build -t autodock-logger .
 ```
 
-Now whenever you start a new container autodock will listen for Docker events. The `autodock-logger` plugin will log all Docker Events received by autodock.
+## Usage
 
-`docker-compose.yml`:
+From source:
+```#!bash
+$ ./autodock-logger -h <autodock_host>
+```
 
-```#!yaml
-autodock:
-  image: prologic/autodock
-  ports:
-    - "1338:1338/udp"
-    - "1338:1338/tcp"
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-
-autodocklogger:
-  image: prologic/autodock-logger
-  links:
-    - autodock
+Using Docker:
+```#!bash
+$ docker run -d autodock-logger -H <autodock_host>
 ```
