@@ -1,6 +1,6 @@
 # autodock-logger
 
-[![Image Layers](https://badge.imagelayers.io/prologic/autodock-logger:go-port.svg)](https://imagelayers.io/?images=prologic/autodock-logger:go-port)
+[![Image Layers](https://badge.imagelayers.io/prologic/autodock-logger:latest.svg)](https://imagelayers.io/?images=prologic/autodock-logger:latest)
 
 Logger plugin for autodock.
 
