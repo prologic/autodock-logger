@@ -4,11 +4,11 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 
 	"github.com/prologic/autodock/plugin"
-	"github.com/prologic/msgbus"
 )
 
 // LoggerPlugin ...
@@ -19,8 +19,8 @@ var LoggerPlugin = &plugin.Plugin{
 	autodock for plugin authors and maintainers to use as a guide for building
 	and maintaining new and interesting plugins for autodock.`,
 	Run: func(ctx plugin.Context) error {
-		ctx.On("container", func(msg *msgbus.Message) error {
-			log.Infof("event received: %v", msg)
+		ctx.On("container", func(id uint64, payload []byte, created time.Time) error {
+			log.Infof("id=%v payload=%s created=%v", id, payload, created)
 			return nil
 		})
 
