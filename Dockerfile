@@ -19,5 +19,5 @@ LABEL autodock.app main
 
 COPY --from=build /go/src/${PLUGIN}/${PLUGIN} /${PLUGIN}
 
-ENTRYPOINT ["/${PLUGIN}"]
+ENTRYPOINT ["/autodock-logger"]
 CMD []
