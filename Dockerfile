@@ -4,14 +4,14 @@ FROM golang:alpine AS build
 RUN apk add --update git make build-base && \
     rm -rf /var/cache/apk/*
 
-WORKDIR /go/src/plugin
-COPY . /go/src/plugin
-RUN go get ./... && go build -o plugin .
+WORKDIR /go/src/autodock-logger
+COPY . /go/src/autodock-logger
+RUN go get ./... && go build .
 
 # Runtime
 FROM scratch
 
-COPY --from=build /go/src/plugin/plugin /plugin
+COPY --from=build /go/src/autodock-logger/autodock-logger /autodock-logger
 
-ENTRYPOINT ["/plugin"]
+ENTRYPOINT ["/autodock-logger"]
 CMD []
