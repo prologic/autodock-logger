@@ -19,10 +19,15 @@ var LoggerPlugin = &plugin.Plugin{
 	autodock for plugin authors and maintainers to use as a guide for building
 	and maintaining new and interesting plugins for autodock.`,
 	Run: func(ctx plugin.Context) error {
-		ctx.On("container", func(id uint64, payload []byte, created time.Time) error {
+		var handler = func(id uint64, payload []byte, created time.Time) error {
 			log.Infof("id=%v payload=%s created=%v", id, payload, created)
 			return nil
-		})
+		}
+
+		ctx.On("container", handler)
+		ctx.On("service", handler)
+		ctx.On("network", handler)
+		ctx.On("node", handler)
 
 		sigs := make(chan os.Signal, 1)
 		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
