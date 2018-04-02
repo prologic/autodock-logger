@@ -14,7 +14,7 @@ import (
 // LoggerPlugin ...
 var LoggerPlugin = &plugin.Plugin{
 	Name:    "LoggerPlugin",
-	Version: "0.0.1",
+	Version: "0.0.2",
 	Description: `LoggerPlugin is a reference implementation plugin for
 	autodock for plugin authors and maintainers to use as a guide for building
 	and maintaining new and interesting plugins for autodock.`,
