@@ -12,9 +12,6 @@ all: dev
 dev: build
 	@./$(APP) -debug
 
-deps:
-	@go get ./...
-
 build: clean deps
 	@go build -tags "netgo static_build" -installsuffix netgo .
 
@@ -22,8 +19,14 @@ image: clean deps
 	@docker build -t $(REPO):$(TAG) .
 	@echo "Image created: $(REPO):$(TAG)"
 
-test: clean deps
-	@go test -v -cover -race $(TEST_ARGS) ./...
+profile:
+	@go test -cpuprofile cpu.prof -memprofile mem.prof -v -bench .
+
+bench:
+	@go test -v -bench .
+
+test:
+	@go test -v -race -cover -coverprofile=coverage.txt -covermode=atomic .
 
 clean:
-	@rm -rf $(APP)
+	@git clean -f -d -X
