@@ -5,7 +5,7 @@ CGO_ENABLED=0
 all: dev
 
 dev: build
-	@./autodock-logger
+	@./autodock-logger -d
 
 build:
 	@go build \
