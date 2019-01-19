@@ -1,23 +1,23 @@
-.PHONY: dev build image test deps clean
+.PHONY: dev build install image test deps clean
 
 CGO_ENABLED=0
-COMMIT=`git rev-parse --short HEAD`
-APP=autodock-logger
-REPO?=prologic/$(APP)
-TAG?=latest
-BUILD?=-dev
 
 all: dev
 
 dev: build
-	@./$(APP) -debug
+	@./autodock-logger
 
-build: clean deps
-	@go build -tags "netgo static_build" -installsuffix netgo .
+build:
+	@go build \
+		-tags "netgo static_build" \
+		-installsuffix netgo \
+		.
 
-image: clean deps
-	@docker build -t $(REPO):$(TAG) .
-	@echo "Image created: $(REPO):$(TAG)"
+install: build
+	@go install
+
+image:
+	@docker build -t prologic/autodock-logger .
 
 profile:
 	@go test -cpuprofile cpu.prof -memprofile mem.prof -v -bench .

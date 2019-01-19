@@ -1,23 +1,16 @@
 # Build
 FROM golang:alpine AS build
 
-ENV PLUGIN autodock-logger
+RUN apk add --no-cache -U git make build-base
 
-RUN apk add --update git make build-base && \
-    rm -rf /var/cache/apk/*
-
-WORKDIR /go/src/${PLUGIN}
-COPY . /go/src/${PLUGIN}
-RUN make build
+WORKDIR /src/autodock-logger
+COPY . /src/autodock-logger
+RUN make build install
 
 # Runtime
-FROM scratch
+FROM alpine:latest
 
-ENV PLUGIN autodock-logger
-
-LABEL autodock.app main
-
-COPY --from=build /go/src/${PLUGIN}/${PLUGIN} /${PLUGIN}
+COPY --from=build /go/bin/autodock-logger /autodock-logger
 
 ENTRYPOINT ["/autodock-logger"]
 CMD []
