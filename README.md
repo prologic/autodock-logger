@@ -1,14 +1,10 @@
 # autodock-logger
 
-[![Image Layers](https://badge.imagelayers.io/prologic/autodock-logger:latest.svg)](https://imagelayers.io/?images=prologic/autodock-logger:latest)
+[![Build Status](https://cloud.drone.io/api/badges/prologic/autodock-logger/status.svg)](https://cloud.drone.io/prologic/autodock-logger)
 
 Logger plugin for autodock (*reference implementation*).
 
-autodock-logger is MIT licensed.
-
-> **note**
->
-> Please see [autodock](https://github.com/prologic/autodock) for the main project and file issues there.
+:bulb: See [autodock](https://github.com/prologic/autodock) for more info.
 
 ## Building
 
@@ -33,3 +29,7 @@ Using Docker:
 ```#!bash
 $ docker run -d autodock-logger -H <autodock_host>
 ```
+
+## License
+
+autodock-logger is MIT licensed.
