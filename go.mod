@@ -16,11 +16,10 @@ require (
 	github.com/prometheus/client_model v0.0.0-20190115171406-56726106282f // indirect
 	github.com/prometheus/common v0.0.0-20190107103113-2998b132700a // indirect
 	github.com/prometheus/procfs v0.0.0-20190117184657-bf6a532e95b1 // indirect
-	github.com/sirupsen/logrus v1.6.0
+	github.com/sirupsen/logrus v1.7.0
 	github.com/stretchr/testify v1.3.0 // indirect
 	golang.org/x/crypto v0.0.0-20190103213133-ff983b9c42bc // indirect
 	golang.org/x/net v0.0.0-20190110200230-915654e7eabc // indirect
-	golang.org/x/sys v0.0.0-20190116161447-11f53e031339 // indirect
 	golang.org/x/time v0.0.0-20160202183820-a4bde1265759 // indirect
 	google.golang.org/grpc v1.0.2 // indirect
 	gotest.tools v2.2.0+incompatible // indirect
